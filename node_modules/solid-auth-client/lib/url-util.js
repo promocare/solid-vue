@@ -6,16 +6,24 @@ Object.defineProperty(exports, "__esModule", {
 exports.toUrlString = exports.originOf = exports.navigateTo = exports.currentUrlNoParams = exports.currentUrl = void 0;
 
 /* eslint-env browser */
-const currentUrl = () => window.location.href;
+function getLocation() {
+  return typeof window !== 'undefined' ? window.location : {
+    href: 'https://example.org/',
+    pathname: '/',
+    origin: 'example.org'
+  };
+}
+
+const currentUrl = () => getLocation().href;
 
 exports.currentUrl = currentUrl;
 
-const currentUrlNoParams = () => window.location.origin + window.location.pathname;
+const currentUrlNoParams = () => getLocation().origin + getLocation().pathname;
 
 exports.currentUrlNoParams = currentUrlNoParams;
 
 const navigateTo = url => {
-  window.location.href = url;
+  getLocation().href = url;
 };
 
 exports.navigateTo = navigateTo;

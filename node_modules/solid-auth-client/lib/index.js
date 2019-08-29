@@ -1,21 +1,27 @@
 "use strict";
 
-const SolidAuthClient = require('./solid-auth-client').default; // Export a singleton instance of SolidAuthClient
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-const auth = new SolidAuthClient(); // Bind methods to instance, so they can be invoked as regular functions
+var _solidAuthClient = _interopRequireDefault(require("./solid-auth-client"));
+
+// Export a singleton instance of SolidAuthClient
+const auth = new _solidAuthClient.default();
+var _default = auth; // Bind methods to instance, so they can be invoked as regular functions
 // (e.g., to pass around the fetch function)
 
-Object.getOwnPropertyNames(SolidAuthClient.prototype).forEach(property => {
+exports.default = _default;
+Object.getOwnPropertyNames(_solidAuthClient.default.prototype).forEach(property => {
   const value = auth[property];
 
   if (typeof value === 'function') {
     auth[property] = value.bind(auth);
   }
-}); // Export the instance as an object for backward compatibility
-// (should become a default export)
-
-module.exports = auth; // Expose window.SolidAuthClient for backward compatibility
+}); // Expose window.SolidAuthClient for backward compatibility
 
 if (typeof window !== 'undefined') {
   if ('SolidAuthClient' in window) {

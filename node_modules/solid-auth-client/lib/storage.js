@@ -15,18 +15,8 @@ const NAMESPACE = 'solid-auth-client';
 exports.NAMESPACE = NAMESPACE;
 
 const defaultStorage = () => {
-  try {
-    if (window && window.localStorage) {
-      return asyncStorage(window.localStorage);
-    }
-  } catch (e) {
-    if (!(e instanceof ReferenceError)) {
-      throw e;
-    }
-  }
-
-  console.warn(`'window.localStorage' unavailable.  ` + `Creating a (not very useful) in-memory storage object as the default storage interface.`);
-  return asyncStorage(memStorage());
+  const hasLocalStorage = typeof window !== 'undefined' && 'localStorage' in window;
+  return asyncStorage(hasLocalStorage ? window.localStorage : memStorage());
 };
 /**
  * Gets the deserialized stored data
