@@ -22,7 +22,7 @@
     "babel": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "lodash": "^4.17.21",
-    "rdflib": "^0.19.1",
+    "rdflib": "^2.2.20",
     "solid-auth-client": "^2.4.1",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4",
